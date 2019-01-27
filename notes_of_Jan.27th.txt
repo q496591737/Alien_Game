@@ -1,0 +1,50 @@
+pygame使用经验总结：
+零、在一切开始之前先初始化
+	pygame.init()初始化背景设置
+一、窗口
+	1.1
+	  pygame.display.set_mode()返回一个surface对象，表示整个显示窗口。
+	  这个method接受一个tuple（width，height）作为参数，用于设置窗口尺寸。
+	  注意：pygame只允许一个显示窗口，每次调用pygame.dsplay.set_mode()会删掉旧的窗口。
+	1.2
+	  pygame.display.set_caption(“窗口名”)用于设置窗口的名字，名字以字符串形式传入。
+	1.3
+	  screen = pygame.display.set_mode()之后，screen为表示整个显示窗口的surface对象
+	  1.3.1
+		screen.get_rect()返回一个rect对象，表示将screen窗口整体视为一个矩形时的参数
+			这个rect对象的一些属性：
+				center = (centerx,centery):矩形中心点的坐标
+				top,bottom：矩形最高点和最低点的y坐标
+				left,rigtht: 矩形最左，最右端的x坐标
+				注意这些值都必须是整数
+	  1.3.2
+		screen.blit(image,rect):
+			将图像image放到矩形rect中。
+			rect参数为上述rect对象，表示了窗口中的一个矩形位置
+			image为pygame中的image对象：
+				pygame.image.load('路径')根据字符串中路径加载一个图像并返回一个image对象
+				通过image.get_rect()可获得该图像的矩形并做修改，从而实现图像在窗口中的移动
+	  1.3.3
+	    screen.fill()设置背景色，接受一个tuple(R,B,G)作为参数
+	1.4
+		pygame.display.flip()修改完成后，这个method将修改后的窗口显示出来
+		也可理解为“刷新”
+
+二、事件监听
+	pygame中的事件都放在一个Eventlist中
+	通过pygame.event.get()可获得该list
+	通过 for event in pygame.event.get(): 可依次处理这些事件。
+	event对象的一些属性：
+		type: pygame.QUIT:表示用户点了左上角的x。
+			  pygame.KEYDOEN:表示用户按下了一个键，该键的值存在event.key
+			  pygame.KEYUP:表示用户松开了一个键，该键的值存在event.key
+		key： pygame.K_RIGHT:表示方向键右
+			  pygame.K_LEFT:表示方向键左
+			
+三、一些经验
+	注意模块化，当一个函数中存在多个独立的功能时最好将它们分别写一个函数
+			
+				
+				
+				
+	  

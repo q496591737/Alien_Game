@@ -1,5 +1,5 @@
 import pygame
-
+from bullet import Bullet
 
 class Ship():
 	def __init__(self,screen):
@@ -12,10 +12,12 @@ class Ship():
 		self.__move = 0
 		self.__speed = 0.1
 		self.__center = float(self.__rect.centerx)
+		self.__bullets = []
 		
 	def blitme(self):
 		self.__screen.blit(self.__image,self.__rect)
-	
+		for bullet in self.__bullets:
+			bullet.blitme()
 	def move_r(self): 
 		self.__move = 1
 	
@@ -31,3 +33,10 @@ class Ship():
 		elif self.__move == -1 and self.__rect.left > 0:
 			self.__center -= self.__speed
 		self.__rect.centerx = self.__center
+	
+	def fire(self):
+		bullet = Bullet(self.__screen,self)
+		self.__bullets.append(bullet)
+		
+	def get_rect(self):
+		return self.__rect

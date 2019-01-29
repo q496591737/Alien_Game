@@ -1,0 +1,6 @@
+2019.1.28
+	1.新增子弹系统
+			bullet.py
+	2.ship中新增bullets列表，用于存储子弹
+	3.ship.blitme进行修改，每次画ship接着画bullets中的所有bullet
+	4.新增ship.get_rect(),用于提供ship相关坐标信息
